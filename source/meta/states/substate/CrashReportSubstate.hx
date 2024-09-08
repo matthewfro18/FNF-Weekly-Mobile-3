@@ -50,7 +50,7 @@ class CrashReportSubstate extends FlxState {
 		report.borderSize = 1.5;
 		add(report);
 
-		underText = new FlxText(0, FlxG.height - 64, FlxG.width, "Press SPACE to return to the Menu Screen.");
+		underText = new FlxText(0, FlxG.height - 64, FlxG.width, "Touch screen to return to the Menu Screen.");
 		underText.setFormat(Paths.font('vcr.ttf'), 24, 0xFFFFFFFF, CENTER, OUTLINE, 0xFF000000);
 		underText.y = FlxG.height - underText.height - 16;
 		underText.borderSize = 1;
@@ -58,15 +58,21 @@ class CrashReportSubstate extends FlxState {
 		add(underText);
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.6, {ease: FlxEase.cubeOut});
-
-		this.camera = FlxG.cameras.list[FlxG.cameras.list.length - 1];
+	    
+	        this.camera = FlxG.cameras.list[FlxG.cameras.list.length - 1];
     }
 
 	override function update(elapsed:Float):Void {
 		super.update(elapsed);
 
-		if (FlxG.keys.justPressed.SPACE){
+		#if mobile
+		for (touch in FlxG.touches.list)
+				{
+		if (touch.justPressed){
 			Init.SwitchToPrimaryMenu();
+		}
+
+		#end
         }
 	}
 }
