@@ -5639,7 +5639,7 @@ class PlayState extends MusicBeatState
 			setOnScripts('gfSection', SONG.notes[curSection].gfSection);
 
 			if (beatsPerZoom == 0) beatsPerZoom = 4;
-		if (camZooming && ClientPrefs.camZooms && curBeat % beatsPerZoom == 0)
+		if (camZooming && ClientPrefs.camZooms)
 		{
 				FlxG.camera.zoom += 0.015 * camZoomingMult;
 				camHUD.zoom += 0.03 * camZoomingMult;
