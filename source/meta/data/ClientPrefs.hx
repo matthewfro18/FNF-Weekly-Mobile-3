@@ -43,6 +43,7 @@ class ClientPrefs {
 	public static var camZooms:Bool = true;
 	public static var hideHud:Bool = false;
 	public static var padalpha:Float = 0.6;
+	public static var gold:Bool = false;
 	public static var hitboxalpha:Float = 0.5;
 	public static var mobileCEx:Bool = false;
 	public static var hitboxType:String = "Gradient";
@@ -179,6 +180,7 @@ class ClientPrefs {
 
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.hitboxalpha = hitboxalpha;
+		FlxG.save.data.gold = gold;
 		FlxG.save.data.padalpha = padalpha;
 		FlxG.save.data.mobileCEx = mobileCEx;
 		FlxG.save.data.hitboxType = hitboxType;
@@ -275,6 +277,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.chartPresets != null){
 			chartPresets = FlxG.save.data.chartPresets;
+		}
+		if(FlxG.save.data.gold != null) {
+			gold = FlxG.save.data.gold;
 		}
 		if(FlxG.save.data.downScroll != null) {
 			downScroll = FlxG.save.data.downScroll;
