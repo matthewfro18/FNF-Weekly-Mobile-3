@@ -39,7 +39,9 @@ import meta.states.*;
 import meta.states.substate.*;
 import gameObjects.*;
 import gameObjects.shader.*;
+#if desktop
 import meta.data.Discord.DiscordClient;
+#end
 
 using StringTools;
 
