@@ -5,7 +5,9 @@ import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxState;
+import mobile.states.CopyState;
 import flixel.util.FlxColor;
+import haxe.io.Path;
 import openfl.Assets;
 import openfl.Lib;
 import openfl.display.FPS;
@@ -17,6 +19,10 @@ import openfl.display.StageScaleMode;
 import meta.states.*;
 import meta.data.*;
 import meta.CompilationStuff;
+#if android
+import android.content.Context;
+import android.os.Build;
+#end
 
 class Main extends Sprite
 {
@@ -37,12 +43,23 @@ class Main extends Sprite
 	public static function main():Void
 	{
 		Lib.current.addChild(new Main());
+		#if cpp
+		cpp.NativeGc.enable(true);
+		#elseif hl
+		hl.Gc.enable(true);
+		#end
 	}
 
 	public function new()
 	{
 		super();
 
+		#if android
+		Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
+		#elseif ios
+		Sys.setCwd(System.documentsDirectory);
+		#end
+		
 		if (stage != null)
 		{
 			init();
@@ -78,38 +95,20 @@ class Main extends Sprite
 
 	private function setupGame():Void
 	{
-		var stageWidth:Int = Lib.current.stage.stageWidth;
-		var stageHeight:Int = Lib.current.stage.stageHeight;
-
-		if (zoom == -1)
-		{
-			var ratioX:Float = stageWidth / gameWidth;
-			var ratioY:Float = stageHeight / gameHeight;
-			zoom = Math.min(ratioX, ratioY);
-			gameWidth = Math.ceil(stageWidth / zoom);
-			gameHeight = Math.ceil(stageHeight / zoom);
-		}
-
-		// #if !debug
-		// #if HIT_SINGLE
-		// initialState = meta.states.HitSingleInit;
-		// #else
-		// initialState = TitleState;		
-		// #end
-		// #end
+		#if mobile
+		Storage.copyNecessaryFiles();
+		#end
 
 		ClientPrefs.loadDefaultKeys();
 		addChild(new FNFGame(gameWidth, gameHeight, initialState, #if(flixel < "5.0.0")zoom,#end framerate, framerate, skipSplash, startFullscreen));
 
-		#if !mobile
 		fpsVar = new FPSCounter(10, 3, 0xFFFFFF);
-		addChild(fpsVar);
+		FlxG.game.addChild(fpsVar);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
 		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
-		#end
 		
 		// #if !DEBUG_MODE
 		// 	compilationInformation = new TextField();
@@ -132,7 +131,9 @@ class Main extends Sprite
 		FlxG.scaleMode = scaleMode = new FunkinRatioScaleMode();
 
 
-
+                #if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
 
 
 	}
