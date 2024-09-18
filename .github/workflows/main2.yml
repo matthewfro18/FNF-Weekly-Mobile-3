@@ -4,9 +4,9 @@ name: Mobile + Release
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ main, experimental ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, experimental ]
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,22 +29,9 @@ jobs:
       - name: Install Libraries
         run: |
           haxelib setup ~/haxelib
-          haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp 5f29028d6063b37ff7915cff1b3b83b6beee103d
-          haxelib git lime https://github.com/mcagabe19-stuff/lime
-          haxelib install openfl 9.2.2
-          haxelib install flixel 5.2.2
-          haxelib install flixel-tools 1.5.1
-          haxelib install flixel-ui 2.5.0
-          haxelib install flixel-addons 2.10.0
-          haxelib install tjson
-          haxelib install away3d
-          haxelib install hxvlc 1.7.1
-          haxelib install hxjsonast
-          haxelib install hscript
-          haxelib install flxanimate 3.0.4
-          haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten
-          haxelib install extension-androidtools
-          haxelib install hxcpp-debug-server
+          haxelib install hxcpp > /dev/null --quiet
+          chmod +x ./setup/unix.sh
+          sh ./setup/unix.sh
           haxelib list
       
       - name: Setup Lime
