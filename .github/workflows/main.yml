@@ -1,6 +1,97 @@
-name: Mobile + Release
-on: workflow_dispatch
+name: Main
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ main, experimental ]
+  pull_request:
+    branches: [ main, experimental ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 jobs:
+  Desktop:
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-12, macos-14]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.3.6
+
+      - name: Install libVLC (Linux)
+        if: startsWith(matrix.os, 'ubuntu')
+        run: sudo apt install libvlc-dev libvlccore-dev
+
+      - name: Install Libraries
+        run: |
+          haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp --quiet
+          haxelib git lime https://github.com/mcagabe19-stuff/lime --quiet
+          haxelib install openfl 9.3.3 --quiet
+          haxelib install flixel 5.6.1 --quiet
+          haxelib install flixel-addons 3.2.2 --quiet
+          haxelib install flixel-tools 1.5.1 --quiet
+          haxelib install hscript-iris 1.1.0 --quiet
+          haxelib install tjson 1.4.0 --quiet
+          haxelib install away3d --quiet
+          haxelib install hxjsonast --quiet
+          haxelib install hscript --quiet
+          haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate 768740a56b26aa0c072720e0d1236b94afe68e3e --quiet
+          haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten --quiet
+          haxelib git hxvlc 1.8.2 --quiet --skip-dependencies
+          haxelib git funkin.vis https://github.com/FunkinCrew/funkVis 22b1ce089dd924f15cdc4632397ef3504d464e90 --quiet --skip-dependencies
+          haxelib git grig.audio https://gitlab.com/haxe-grig/grig.audio.git cbf91e2180fd2e374924fe74844086aab7891666 --quiet
+  
+      - name: Compile (Windows)
+        if: startsWith(matrix.os, 'windows')
+        run: haxelib run lime build windows -D officialBuild
+
+      - name: Compile (Linux)
+        if: startsWith(matrix.os, 'ubuntu')
+        run: haxelib run lime build linux -D officialBuild
+
+      - name: Compile (macOS)
+        if: startsWith(matrix.os, 'macos')
+        run: haxelib run lime build mac -D officialBuild
+
+      - name: Upload Artifact (Windows)
+        if: startsWith(matrix.os, 'windows')
+        uses: actions/upload-artifact@main
+        with:
+          name: windowsBuild
+          path: export\release\windows\bin\*
+          if-no-files-found: error
+
+      - name: Upload Artifact (Linux)
+        if: startsWith(matrix.os, 'ubuntu')
+        uses: actions/upload-artifact@main
+        with:
+          name: linuxBuild
+          path: export/release/linux/bin/*
+          if-no-files-found: error
+
+      - name: Upload Artifact (macOS 12)
+        if: matrix.os == 'macos-12'
+        uses: actions/upload-artifact@main
+        with:
+          name: macOSBuild-x86_64
+          path: export/release/macos/bin/*
+          if-no-files-found: error
+
+      - name: Upload Artifact (macOS 14)
+        if: matrix.os == 'macos-14'
+        uses: actions/upload-artifact@main
+        with:
+          name: macOSBuild-arm64
+          path: export/release/macos/bin/*
+          if-no-files-found: error
   Mobile:
     runs-on: ${{matrix.os}}
     strategy:
