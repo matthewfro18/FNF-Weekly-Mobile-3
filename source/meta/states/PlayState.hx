@@ -592,7 +592,7 @@ class PlayState extends MusicBeatState
 		healthLoss = ClientPrefs.getGameplaySetting('healthloss', 1);
 		instakillOnMiss = ClientPrefs.getGameplaySetting('instakill', false);
 		practiceMode = ClientPrefs.getGameplaySetting('practice', false);
-		cpuControlled = false; //ClientPrefs.getGameplaySetting('botplay', false);
+		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
         // ^^ i dont think theres a way to toggle cpucontrolled in menus????? so im doing this
 
 		// var gameCam:FlxCamera = FlxG.camera;
