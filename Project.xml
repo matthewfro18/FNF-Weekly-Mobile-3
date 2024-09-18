@@ -91,7 +91,7 @@
 
 	<!-- _______________________________ Libraries ______________________________ -->
 	<!-- <haxelib name="" version=""/> -->
-	<lime version="8.1.1"/>
+	<lime />
 
 	<haxelib name="flixel" />
 	<haxelib name="flixel-addons" />
