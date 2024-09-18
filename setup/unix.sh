@@ -6,8 +6,8 @@ cd ..
 echo Makking the main haxelib and setuping folder in same time..
 mkdir ~/haxelib && haxelib setup ~/haxelib
 echo Installing dependencies...
-echo This might take a few moments depending on your internet speed.
-haxelib install lime 8.1.1
+echo This might take a few moments depending on your internet
+haxelib git lime https://github.com/mcagabe19-stuff/lime
 haxelib install lime 8.1.2
 haxelib install openfl 9.2.2
 haxelib install openfl 9.3.3
