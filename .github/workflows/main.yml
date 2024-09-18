@@ -149,8 +149,8 @@ jobs:
           cd export/release/ios/build/*-iphoneos
           mkdir Payload
           mv *.app Payload
-          zip -r PsychEngine.ipa Payload
-          zip PsychEngine-iOS.zip PsychEngine.ipa
+          zip -r FNFWeekly.ipa Payload
+          zip FNFWeekly-iOS.zip PsychEngine.ipa
 
       - name: Upload Artifact (Android)
         if: startsWith(matrix.os, 'ubuntu')
