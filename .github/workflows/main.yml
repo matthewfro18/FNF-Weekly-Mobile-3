@@ -51,6 +51,7 @@ jobs:
           haxelib install hscript
           haxelib install faxe
           haxelib install away3d
+          haxelib install linc_luajit
           haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate 768740a56b26aa0c072720e0d1236b94afe68e3e
 
       - name: Compile (Windows)
@@ -132,6 +133,7 @@ jobs:
           haxelib install hscript
           haxelib install faxe
           haxelib install away3d
+          haxelib install linc_luajit
           haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate
       - name: Configure Android
         if: startsWith(matrix.os, 'ubuntu')
