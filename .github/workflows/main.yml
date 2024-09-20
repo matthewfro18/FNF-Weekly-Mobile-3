@@ -45,7 +45,6 @@ jobs:
           haxelib install flixel-tools 1.5.1
           haxelib install hscript-iris 1.1.0
           haxelib install tjson 1.4.0
-          haxelib install hxdiscord_rpc 1.2.4
           haxelib install hxvlc 1.8.2
           haxelib install flxanimate 3.0.4
           haxelib install hscript
@@ -53,6 +52,7 @@ jobs:
           haxelib install away3d
           haxelib install linc_luajit
           haxelib install flxanimate
+          haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 
       - name: Compile (Windows)
         if: startsWith(matrix.os, 'windows')
@@ -127,7 +127,6 @@ jobs:
           haxelib install flixel-tools 1.5.1
           haxelib install hscript-iris 1.1.0
           haxelib install tjson 1.4.0
-          haxelib install discord_rpc 1.2.4
           haxelib install hxvlc 1.8.2
           haxelib install flxanimate 3.0.4
           haxelib install hscript
@@ -135,6 +134,7 @@ jobs:
           haxelib install away3d
           haxelib install linc_luajit
           haxelib install flxanimate
+          haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
       - name: Configure Android
         if: startsWith(matrix.os, 'ubuntu')
         run: |
