@@ -52,8 +52,6 @@ jobs:
           haxelib install faxe
           haxelib install away3d
           haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate 768740a56b26aa0c072720e0d1236b94afe68e3e
-          haxelib git linc_luajit https://github.com/superpowers04/linc_luajit 1906c4a96f6bb6df66562b3f24c62f4c5bba14a7
-          haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 
       - name: Compile (Windows)
         if: startsWith(matrix.os, 'windows')
@@ -128,16 +126,13 @@ jobs:
           haxelib install flixel-tools 1.5.1
           haxelib install hscript-iris 1.1.0
           haxelib install tjson 1.4.0
-          haxelib install hxdiscord_rpc 1.2.4
+          haxelib install discord_rpc 1.2.4
           haxelib install hxvlc 1.8.2
           haxelib install flxanimate 3.0.4
           haxelib install hscript
           haxelib install faxe
           haxelib install away3d
-          haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate 768740a56b26aa0c072720e0d1236b94afe68e3e
-          haxelib git linc_luajit https://github.com/superpowers04/linc_luajit 1906c4a96f6bb6df66562b3f24c62f4c5bba14a7
-          haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
-
+          haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate
       - name: Configure Android
         if: startsWith(matrix.os, 'ubuntu')
         run: |
