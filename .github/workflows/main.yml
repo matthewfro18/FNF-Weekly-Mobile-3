@@ -44,7 +44,7 @@ jobs:
           haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate --quiet
           haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten --quiet
           haxelib git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc --quiet --skip-dependencies
-          haxelib git hxvlc --quiet
+          haxelib install hxvlc 1.8.2 --quiet --skip-dependencies
 
       - name: Compile (Windows)
         if: startsWith(matrix.os, 'windows')
@@ -117,7 +117,7 @@ jobs:
           haxelib install away3d --quiet
           haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate --quiet
           haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten --quiet
-          haxelib git hxvlc --quiet
+          haxelib install hxvlc 1.8.2 --quiet
           haxelib install extension-androidtools
 
       - name: Configure Android
