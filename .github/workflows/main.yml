@@ -42,8 +42,6 @@ jobs:
       - name: Install Libraries (Macos 12)
         if: startsWith(matrix.os, 'macos-12')
         run: |
-          sudo apt-get install libvlc-dev
-          sudo apt-get install libvlccore-dev
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null --quiet
           chmod +x ./setup/unix.sh
@@ -51,8 +49,6 @@ jobs:
       - name: Install Libraries (Macos 14)
         if: startsWith(matrix.os, 'macos-14')
         run: |
-          sudo apt-get install libvlc-dev
-          sudo apt-get install libvlccore-dev
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null --quiet
           chmod +x ./setup/unix.sh
