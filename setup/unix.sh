@@ -27,5 +27,5 @@ haxelib install away3d
 haxelib install extension-androidtools
 haxelib install linc_luajit
 haxelib install flxanimate
-haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpcgithub.com/Aidan63/linc_discord-rpc
+haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 echo Finished!
