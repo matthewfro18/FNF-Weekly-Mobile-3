@@ -110,7 +110,7 @@ jobs:
       - name: Install Libraries
         run: |
           haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp --quiet
-          haxelib install lime--quiet
+          haxelib install lime --quiet
           haxelib install openfl--quiet
           haxelib install flixel --quiet
           haxelib install flixel-addons --quiet
