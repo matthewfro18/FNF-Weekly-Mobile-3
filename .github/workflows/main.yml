@@ -118,7 +118,7 @@ jobs:
           haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate --quiet
           haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten --quiet
           haxelib git hxvlc 1.8.2 --quiet --skip-dependencies
-          haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools --quiet --skip-dependencies
+          haxelib install extension-androidtools
 
       - name: Configure Android
         if: startsWith(matrix.os, 'ubuntu')
